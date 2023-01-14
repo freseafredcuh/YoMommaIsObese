@@ -418,32 +418,30 @@ local Dropdown = Section4:CreateDropdown({
 local Button = Section4:CreateButton({
     Name = "Hitbox",
     Callback = function()
-        _G.size = headSize
-    _G.togglesize = Vector3.new(headSize,headSize,headSize)
-    Players = game:GetService("Players")
-    meta = getrawmetatable(game)
-    id = meta.__index
-    setreadonly(meta,false)
-
-
-    for i,v in pairs (Players:GetPlayers()) do
+      hs = headSize
+      togglesize = Vector3.new(headSize, headSize, headSize)
+      Players = game:GetService("Players")
+      meta = getrawmetatable(game)
+      id = meta.__index
+      setreadonly(meta,false)
+     
+      for i,v in pairs (Players:GetPlayers()) do
     if v ~= Players.LocalPlayer then
     meta.__index = function(rc, ...)
     args = {...}
-    if rc:IsA("Part") and tostring(rc) == HBPart  and args[1] == "Size" then
+    if rc:IsA("Part") and tostring(rc) == hbePart  and args[1] == "Size" then
     return Vector3.new(2,2.35,1)
     end
     return id(rc, ...)
             end
         end
     end
-
-while wait(1.5) do
+    while wait(1.5) do
     for i, v in pairs(Players:GetPlayers()) do
         if v ~= Players.LocalPlayer and (Players.LocalPlayer.Team == nil or Players.LocalPlayer.Team ~= v.Team) and v.Character ~= nil then
             for a, b in pairs(v.Character:GetChildren()) do
-                if b:IsA("Part") and b.Name == HBPart then
-                    b.Size = _G.togglesize
+                if b:IsA("Part") and b.Name == hbePart then
+                    b.Size = togglesize
                     b.Transparency = headTrans
                     b.CanCollide = false
                 end
@@ -451,6 +449,8 @@ while wait(1.5) do
         end
     end
 end
+   end,
+    
     end,
  })
 
