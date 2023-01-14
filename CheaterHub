@@ -309,6 +309,24 @@ local Slider = Section1:CreateSlider({
     targetPart = dropdownvalue
     end,
  })
+
+ local Keybind = Section1:CreateKeybind({
+    Name = "Keybind Example",
+    CurrentKeybind = "E",
+    HoldToInteract = false,
+    Flag = "Keybind1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Keybind)
+            local function Input(input, gameProcessedEvent)
+                local value = input.KeyCode
+                if value ~= Enum.KeyCode.Unknown then
+                    aimlockKeybind = value
+                    connection:Disconnect()
+                end
+            end
+    
+            connection = UserInputService.InputBegan:Connect(Input)
+    end,
+ })
  
  local Section = Section1:CreateSection("Bone Hit Chance (MUST ADD UP TO 100)")
  local Slider = Section1:CreateSlider({
@@ -347,23 +365,7 @@ local Slider = Section1:CreateSlider({
     end,
  })
 
- local Keybind = Section1:CreateKeybind({
-    Name = "Keybind Example",
-    CurrentKeybind = "E",
-    HoldToInteract = false,
-    Flag = "Keybind1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-    Callback = function(Keybind)
-            local function Input(input, gameProcessedEvent)
-                local value = input.KeyCode
-                if value ~= Enum.KeyCode.Unknown then
-                    aimlockKeybind = value
-                    connection:Disconnect()
-                end
-            end
-    
-            connection = UserInputService.InputBegan:Connect(Input)
-    end,
- })
+ 
 
  local Slider = Section1:CreateSlider({
     Name = "Lower Torso",
@@ -518,7 +520,7 @@ local Button = Section4:CreateButton({
     end,
  })
 
- local ColorPicker = Section1:CreateColorPicker({
+ local ColorPicker = Section2:CreateColorPicker({
     Name = "ESP Color",
     Color = Color3.fromRGB(255,0,0),
     Flag = "Color", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
