@@ -418,8 +418,6 @@ local Dropdown = Section4:CreateDropdown({
 local Button = Section4:CreateButton({
     Name = "Hitbox",
     Callback = function()
-        if not hitboxRunning then
-            hitboxRunning = true
         _G.size = headSize
     _G.togglesize = Vector3.new(headSize,headSize,headSize)
     Players = game:GetService("Players")
