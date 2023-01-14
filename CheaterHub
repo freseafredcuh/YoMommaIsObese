@@ -402,7 +402,7 @@ local Dropdown = Section4:CreateDropdown({
     end,
  })
  
-  local ColorPicker = Section3:CreateColorPicker({
+  local ColorPicker = Section4:CreateColorPicker({
     Name = "Hitbox Colour",
     Color = Color3.fromRGB(255,0,0),
     Flag = "Color", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
