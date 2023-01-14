@@ -310,23 +310,23 @@ local Slider = Section1:CreateSlider({
     end,
  })
 
- local Keybind = Section1:CreateKeybind({
-    Name = "Keybind Example",
-    CurrentKeybind = "E",
-    HoldToInteract = false,
-    Flag = "Keybind1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-    Callback = function(Keybind)
-            local function Input(input, gameProcessedEvent)
-                local value = input.KeyCode
-                if value ~= Enum.KeyCode.Unknown then
-                    aimlockKeybind = value
-                    connection:Disconnect()
-                end
-            end
+ --local Keybind = Section1:CreateKeybind({
+   -- Name = "Keybind Example",
+  --  CurrentKeybind = "E",
+   -- HoldToInteract = false,
+    --Flag = "Keybind1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    --Callback = function(Keybind)
+         --   local function Input(input, gameProcessedEvent)
+              --  local value = input.KeyCode
+               -- if value ~= Enum.KeyCode.Unknown then
+                 --   aimlockKeybind = value
+                 --   connection:Disconnect()
+               -- end
+           -- end
     
-            connection = UserInputService.InputBegan:Connect(Input)
-    end,
- })
+           -- connection = UserInputService.InputBegan:Connect(Input)
+  --  end,
+-- })
  
  local Section = Section1:CreateSection("Bone Hit Chance (MUST ADD UP TO 100)")
  local Slider = Section1:CreateSlider({
@@ -404,15 +404,6 @@ local Slider = Section1:CreateSlider({
     end,
  })
 
- local ColorPicker = Section4:CreateColorPicker({
-    Name = "Hitbox Colour",
-    Color = Color3.fromRGB(255,0,0),
-    Flag = "Color", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-    Callback = function(color)
-        headColor = color
-    end
-})
-
 local hbePart
 local Dropdown = Section4:CreateDropdown({
     Name = "Hitbox Part",
@@ -429,52 +420,39 @@ local Button = Section4:CreateButton({
     Callback = function()
         if not hitboxRunning then
             hitboxRunning = true
-        game:GetService("Players").playerAdded:Connect(function(player)
-            player.CharacterAdded:Connect(function(character)
-                if not isInTable(team, player.Name) then
-                local head = character:WaitForChild("HumanoidRootPart")
-                if head then
-                    head.Size = Vector3.new(headSize,headSize,headSize)
-                    head.Transparency = headTrans
-                    head.CanCollide = false
-                    head.Material = "Plastic"
-                    wait()
-                    head.Color = headColor
-                end
+        _G.size = headSize
+    _G.togglesize = Vector3.new(headSize,headSize,headSize)
+    Players = game:GetService("Players")
+    meta = getrawmetatable(game)
+    id = meta.__index
+    setreadonly(meta,false)
+
+
+    for i,v in pairs (Players:GetPlayers()) do
+    if v ~= Players.LocalPlayer then
+    meta.__index = function(rc, ...)
+    args = {...}
+    if rc:IsA("Part") and tostring(rc) == HBPart  and args[1] == "Size" then
+    return Vector3.new(2,2.35,1)
+    end
+    return id(rc, ...)
             end
-            end)
-        end)
-        for i,player in pairs(game:GetService("Players"):GetPlayers()) do
-            if player ~= localPlayer and not isInTable(team, player.Name) then
-                player.CharacterAdded:Connect(function(character)
-                    if not isInTable(team, player.Name) then
-                    local head = character:WaitForChild("HumanoidRootPart")
-                    if head then
-                        head.Size = Vector3.new(headSize,headSize,headSize)
-                        head.Transparency = headTrans
-                        head.CanCollide = false
-                        head.Material = "Plastic"
-                        wait()
-                        head.Color = headColor
-                    end
-                end
-                end)
-                if player.Character then
-                    if not isInTable(team, player.Name) then
-                    local head = player.Character:FindFirstChild("HumanoidRootPart")
-                    if head then
-                        head.Size = Vector3.new(headSize,headSize,headSize)
-                        head.Transparency = headTrans
-                        head.CanCollide = false
-                        head.Material = "Plastic"
-                        wait()
-                        head.Color = headColor
-                    end
-                end
+        end
+    end
+
+while wait(1.5) do
+    for i, v in pairs(Players:GetPlayers()) do
+        if v ~= Players.LocalPlayer and (Players.LocalPlayer.Team == nil or Players.LocalPlayer.Team ~= v.Team) and v.Character ~= nil then
+            for a, b in pairs(v.Character:GetChildren()) do
+                if b:IsA("Part") and b.Name == HBPart then
+                    b.Size = _G.togglesize
+                    b.Transparency = headTrans
+                    b.CanCollide = false
                 end
             end
         end
     end
+end
     end,
  })
 
