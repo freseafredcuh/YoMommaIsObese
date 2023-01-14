@@ -219,14 +219,14 @@ local Toggle = Section1:CreateToggle({
     end,
 })
 
---local Toggle = Section3:CreateToggle({
-   -- Name = "Anti-Aim",
-    --CurrentValue = false,
-   -- Flag = "AntiAim",
-   -- Callback = function(bool)
-    --    antiAim = bool
-  --  end,
---})
+local Toggle = Section3:CreateToggle({
+   Name = "Anti-Aim",
+    CurrentValue = false,
+    Flag = "AntiAim",
+    Callback = function(bool)
+       antiAim = bool
+    end,
+})
 
 --local Toggle = Section3:CreateToggle({
     --Name = "Auto Pickaxe",
@@ -255,14 +255,14 @@ local Toggle = Section1:CreateToggle({
     end,
 })
 
---local Toggle = Section1:CreateToggle({
-    --Name = "Auto Fire",
-   -- CurrentValue = false,
-    --Flag = "Autowall",
-    --Callback = function(bool)
-      --  autowall = bool
-   -- end,
---})
+local Toggle = Section1:CreateToggle({
+    Name = "Auto Fire",
+    CurrentValue = false,
+    Flag = "Autowall",
+    Callback = function(bool)
+        autowall = bool
+    end,
+})
 
 local Slider = Section1:CreateSlider({
    Name = "Smoothness",
