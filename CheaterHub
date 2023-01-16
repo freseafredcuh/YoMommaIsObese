@@ -228,23 +228,23 @@ local Toggle = Section3:CreateToggle({
     end,
 })
 
---local Toggle = Section3:CreateToggle({
-    --Name = "Auto Pickaxe",
-    --CurrentValue = false,
-   -- Flag = "PickaxeAura",
-   -- Callback = function(bool)
-   --      pickaxeAura = bool
-  --  end,
---})
+local Toggle = Section3:CreateToggle({
+    Name = "Auto Pickaxe",
+    CurrentValue = false,
+    Flag = "PickaxeAura",
+    Callback = function(bool)
+         pickaxeAura = bool
+   end,
+})
 
---local Toggle = Section3:CreateToggle({
-   -- Name = "Bounce TP",
-   -- CurrentValue = false,
-   -- Flag = "BounceTP",
-   -- Callback = function(bool)
-      --  tpexploit = bool
-  --  end,
---})
+local Toggle = Section3:CreateToggle({
+    Name = "Bounce TP",
+    CurrentValue = false,
+    Flag = "BounceTP",
+    Callback = function(bool)
+        tpexploit = bool
+    end,
+})
 
 local Toggle = Section1:CreateToggle({
     Name = "Visibility Check",
