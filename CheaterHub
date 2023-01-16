@@ -1,4 +1,4 @@
-wl = true100
+wl = true
 constants = string.split("https://pastebin.com/raw/c2Vu80fC|Team_Data|Melee_Handler|https://pastebin.com/raw/4JuheYmH|Fire_BulletX|function|Airdrop_Watch|table|Tactical Rifle|Medium Ammo|Assault|weaponData|FireRate|GetState", "|")
 
 --// Vars
