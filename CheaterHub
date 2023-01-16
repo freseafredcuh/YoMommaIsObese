@@ -1,4 +1,4 @@
-wl = true
+wl = true100
 constants = string.split("https://pastebin.com/raw/c2Vu80fC|Team_Data|Melee_Handler|https://pastebin.com/raw/4JuheYmH|Fire_BulletX|function|Airdrop_Watch|table|Tactical Rifle|Medium Ammo|Assault|weaponData|FireRate|GetState", "|")
 
 --// Vars
@@ -123,7 +123,7 @@ local guiTick = tick()
 -- // Gui
 local circle1 = Drawing.new("Circle")
 circle1.Visible = false
-circle1.Filled = true
+circle1.Filled = false
 circle1.NumSides = 1000
 circle1.Radius = 0 
 circle1.Transparency = 1
@@ -650,10 +650,15 @@ local messageTable = {
     "L gamer",
     "Jurd's Child is a qt",
     "U shud defo buy cheater hub",
-    ".gg/UNOTINVITED LOL",
+    ".gg/Kb2rQxPAwH LOL",
     "Why do ppl think its kiwi lol",
     "OMG UR AWFUL",
-    "T f"
+    "T f",
+    ".gg/Kb2rQxPAwH",
+    "IM A PRO GAMER",
+    "Earnings check..",
+    "Full boxed.. 200 pump, dead",
+    "Rweneage Pwease Dont Bwan Me.. Uwu"
 }
 
 local Toggle = Section3:CreateToggle({
@@ -1269,7 +1274,7 @@ local misc = tick()
 -- // Drawing
 
 circle.Visible = circlevis
-circle.Transparency = 1
+circle.Transparency = 0
 circle.Color = Color3.fromRGB(0,0,0)
 circle.Thickness = 1
 circle.Radius = 100
