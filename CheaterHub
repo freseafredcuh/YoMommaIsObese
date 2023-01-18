@@ -30,7 +30,7 @@ nameEnabled = Options["nameEnabled"] or false
 targetPart = Options["targetPart"] or "Head"
 hitChance = Options["hitChance"] or 100
 smoothness = Options["smoothness"] or 1
-espBoxes = Options["boxEsp"] or true
+espBoxes = Options["boxEsp"] or false
 visibleCheck = Options["visibleCheck"] or false
 aimlockKeybind = Options["aimlockKeybind"] or "MouseButton2"
 autopot = Options["autopot"] or false
@@ -41,7 +41,7 @@ Uchance = Options["uppertorsoHitChance"] or 0
 Lchance = Options["lowertorsoHitChance"] or 0
 noFall = Options["nofall"] or false
 espTracers = Options["espTracers"] or false
-espNames = Options["espNames"] or true
+espNames = Options["espNames"] or false
 espLock = Options["espLock"] or false
 
 if Options["mkeybind"] then
@@ -228,23 +228,23 @@ local Toggle = Section3:CreateToggle({
     end,
 })
 
-local Toggle = Section3:CreateToggle({
-    Name = "Auto Pickaxe",
-    CurrentValue = false,
-    Flag = "PickaxeAura",
-    Callback = function(bool)
-         pickaxeAura = bool
-   end,
-})
+--local Toggle = Section3:CreateToggle({
+   -- Name = "Auto Pickaxe",
+   -- CurrentValue = false,
+   -- Flag = "PickaxeAura",
+    --Callback = function(bool)
+         pickaxeAura = false
+   --end,
+--})
 
-local Toggle = Section3:CreateToggle({
-    Name = "Bounce TP",
-    CurrentValue = false,
-    Flag = "BounceTP",
-    Callback = function(bool)
-        tpexploit = bool
-    end,
-})
+--local Toggle = Section3:CreateToggle({
+    --Name = "Bounce TP",
+   -- CurrentValue = false,
+    --Flag = "BounceTP",
+    --Callback = function(bool)
+        tpexploit = false
+    --end,
+--})
 
 local Toggle = Section1:CreateToggle({
     Name = "Visibility Check",
@@ -255,14 +255,14 @@ local Toggle = Section1:CreateToggle({
     end,
 })
 
-local Toggle = Section1:CreateToggle({
-    Name = "Auto Fire",
-    CurrentValue = false,
-    Flag = "Autowall",
-    Callback = function(bool)
-        autowall = bool
-    end,
-})
+--local Toggle = Section1:CreateToggle({
+    --Name = "Auto Fire",
+    --CurrentValue = false,
+    --Flag = "Autowall",
+    --Callback = function(bool)
+        autowall = false
+   -- end,
+--})
 
 local Slider = Section1:CreateSlider({
    Name = "Smoothness",
@@ -661,6 +661,20 @@ local messageTable = {
     "Rweneage Pwease Dont Bwan Me.. Uwu"
 }
 
+cSpeed = 3
+local Slider = Section3:CreateSlider({
+    Name = "Chat Speed (In Seconds)",
+    Range = {0.5, 5},
+    Increment = 0.1,
+    Suffix = "ChatSpeed",
+    CurrentValue = 3,
+    Flag = "ChatSpeed", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(slidervalue)
+        cSpeed = slidervalue
+    end,
+ })
+
+
 local Toggle = Section3:CreateToggle({
     Name = "Flex Cheater Hub!",
     CurrentValue = false,
@@ -669,7 +683,7 @@ local Toggle = Section3:CreateToggle({
         autochat = bool
         local Target = game:GetService("ReplicatedStorage")["Remote_Events"]["Request_Chat"];
         coroutine.wrap(function()
-            while wait(3) do
+            while wait(cSpeed) do
                 if not autochat then break end
                 local indexx = random:NextInteger(1, #messageTable)
                 Target:FireServer(messageTable[indexx])
