@@ -694,7 +694,7 @@ local Toggle = Section3:CreateToggle({
  })
 
 coroutine.wrap(function()
-    while wait(3) do
+    while wait(cSpeed) do
         if not autochat then break end
         local indexx = random:NextInteger(1, #messageTable)
         Target:FireServer(messageTable[indexx])
