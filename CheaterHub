@@ -255,14 +255,14 @@ local Toggle = Section1:CreateToggle({
     end,
 })
 
---local Toggle = Section1:CreateToggle({
-    --Name = "Auto Fire",
-    --CurrentValue = false,
-    --Flag = "Autowall",
-    --Callback = function(bool)
+local Toggle = Section1:CreateToggle({
+    Name = "Auto Fire",
+    CurrentValue = false,
+    Flag = "Autowall",
+    Callback = function(bool)
         autowall = false
-   -- end,
---})
+    end,
+})
 
 local Slider = Section1:CreateSlider({
    Name = "Smoothness",
@@ -996,6 +996,19 @@ coroutine.wrap(
                                             remote:InvokeServer(slot)
                                         end
                                     end
+                                elseif val == "Guzzle Splash" then
+                                    if hp < 25 then
+                                        if equipTool.Name ~= val then
+                                            for i, v in pairs(localPlayer.Backpack:GetChildren()) do
+                                                if v.Name == val then
+                                                    localPlayer.Character.Humanoid:EquipTool(v)
+                                                end
+                                            end
+                                            remmote:InvokeServer(slot)
+                                        else
+                                            remote:InvokeServer(slot)
+                                        end
+                                    end
                                 elseif val == "Bandage" then
                                     if hp < 75 then
                                         if equipTool.Name ~= val then
@@ -1388,7 +1401,7 @@ local Toggle = Section2:CreateToggle({
                      )
                      getgenv().targetPlayer = closestPlayer
                      if getgenv().targetPlayer then
-                         mouse1click()
+                        mouse1press()
                      end
              end
  
